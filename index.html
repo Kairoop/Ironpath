@@ -378,14 +378,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg0);color:var(--text1);f
 </div>
 <script>
 if("serviceWorker" in navigator){
-  var sw="self.addEventListener(\"install\",function(e){";
-  sw+="e.waitUntil(caches.open(\"ip-v1\").then(function(c){return c.addAll([\"./\"]);}))"
-  sw+=";self.skipWaiting();});";
-  sw+="self.addEventListener(\"activate\",function(){self.clients.claim();});";
-  sw+="self.addEventListener(\"fetch\",function(e){";
-  sw+="e.respondWith(fetch(e.request).catch(function(){return caches.match(e.request);}));});";
-  var b=new Blob([sw],{type:"application/javascript"});
-  navigator.serviceWorker.register(URL.createObjectURL(b)).catch(function(){});
+  navigator.serviceWorker.register("/sw.js").catch(function(){});
 }
 </script>
 <script>
